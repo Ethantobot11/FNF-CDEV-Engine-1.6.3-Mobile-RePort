@@ -1,0 +1,1 @@
+typedef Main = game.system.FunkinMain;

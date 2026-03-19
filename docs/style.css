@@ -1,0 +1,151 @@
+@font-face {
+    font-family: funkinFont;
+    src: url(https://fonts.googleapis.com/css?family=Ubuntu:400,700,400italic,700italic);;
+}
+@font-face {
+    font-family: funkinDiff;
+    src: url(assets/pmf2.ttf);
+}
+
+body {
+    background-color: rgb(20, 20, 20);
+}
+body, html {
+    margin: 0;
+    padding: 0;
+}
+.container {
+    display: grid;
+    grid-template-columns: 300px auto;
+}
+
+.tab-content {
+    display: none;
+    height: 0%;
+}
+
+.active-tab {
+    height: 100%;
+    display: block;
+    font-family: "Ubuntu";
+    max-width: 85%;
+    font-size: 14px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    border: 1px solid rgb(139, 139, 139);
+    padding: 8px;
+    text-align: left;
+}
+
+pre {
+    display: block;
+    overflow-x: auto;
+    font-family: Monaco,Menlo,Consolas,"Courier New",monospace;
+    font-size: 14px;
+    color: #FFFFFF
+}
+
+#sidebar {
+    position: sticky;
+    background-color: #111111;
+    padding: 20px;
+    min-height: 100vh;
+    overflow-y: auto;
+}
+
+#sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#sidebar ul li {
+    margin-bottom: 10px;
+}
+
+#sidebar ul li a {
+    text-decoration: none;
+    color: #a1a1a1;
+    font-family: "Ubuntu";
+    display: block;
+    letter-spacing: 0.5px;
+}
+
+#content {
+    background-color: #161616;
+    color: #e4e4e4;
+    padding: 20px;
+    font-family: "Ubuntu";
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    line-height: 140%;
+}
+
+#sidebar ul li a:hover {
+    background-color: #353535;
+}
+
+.titlestuffs{
+    color: #e4e4e4; 
+    font-family: "Ubuntu";
+    font-size: 24px;
+    letter-spacing: 2px;
+}
+
+.titlestuffsD{
+    color: #e4e4e4; 
+    font-family: "Ubuntu";
+    font-size: 34px;
+}
+
+/*Function*/
+.func {
+    color:#DCDCAA;
+}
+
+/*Variable - name*/
+.vari {
+    color:#9CDCFE;
+}
+
+/*Class*/
+.clas {
+    color:#4EC9B0;
+}
+
+/*Parameter / ()*/
+.param {
+    color:#FFFFFF;
+}
+
+/*values*/
+.val {
+    color:#569CD6;
+}
+
+/*comment*/
+.com {
+    color:#608B4E;
+}
+
+/*string*/
+.str {
+    color:#CE9178;
+}
+
+.codeblock {
+    padding: 10px;
+    white-space:pre-line;
+    background-color: #1E1E1E;
+    display: block;
+    overflow-x: auto;
+    font-family: Monaco,Menlo,Consolas,"Courier New",monospace;
+    font-size: 14px;
+    color: #FFFFFF
+}
