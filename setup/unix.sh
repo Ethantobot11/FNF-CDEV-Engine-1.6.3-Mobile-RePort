@@ -15,5 +15,6 @@ haxelib install tjson 1.4.0 --quiet
 haxelib install hxCodec --quiet
 haxelib git hxcpp https://github.com/beihu235/hxcpp --quiet
 haxelib git lime https://github.com/ArkoseLabsOfficial/lime --quiet
+haxelib git mobile-controls https://github.com/ArkoseLabsOfficial/mobile-controls-dev --quiet
 haxelib install openfl 9.3.3
 echo Finished!
