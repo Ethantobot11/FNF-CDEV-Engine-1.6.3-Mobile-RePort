@@ -17,9 +17,9 @@ jobs:
           - name: iOS
             os: macos-26
             buildArgs: "ios -final -nosign"
-            setupCommand: sh ./setup/unix.sh
+            setupCommand: sh ./setup/ios.sh
             artifactName: iOSBuild
-            artifactPath: "export/release/ios/build/Release-iphoneos/*.ipa"
+            artifactPath: "export/release/ios/build/Release-iphoneos/CDEV_Engine.ipa"
     uses: ./.github/workflows/build.yml
     with:
         name: ${{ matrix.name }}

@@ -4,8 +4,13 @@ import lime.system.CFFI;
 import game.cdev.log.GameLog;
 import flixel.addons.display.FlxRuntimeShader;
 #if USE_VIDEOS
+#if ios
+import hxvlc.flixel.FlxVideo;
+import hxvlc.flixel.FlxVideoSprite;
+#else
 import hxcodec.flixel.FlxVideo;
 import hxcodec.flixel.FlxVideoSprite;
+#end
 #end
 
 import flixel.graphics.tile.FlxGraphicsShader;

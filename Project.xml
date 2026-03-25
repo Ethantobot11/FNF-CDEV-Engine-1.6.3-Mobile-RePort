@@ -2,7 +2,7 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="FNF': CDEV Engine" file="CDEV Engine" packageName="com.core5570r.cdevengine" package="com.core5570r.cdevengine" main="game.system.FunkinMain" version="0.2.8" company="CoreCat" />
+	<app title="CDEV Engine" file="CDEV_Engine" packageName="com.core5570r.cdevengine" package="com.core5570r.cdevengine" main="game.system.FunkinMain" version="0.2.8" company="CoreCat" />
 
 	<!--Switch Export with Unique ApplicationID and Icon-->
 	<set name="APP_ID" value="0x0100f6c013bbc000" />
@@ -70,7 +70,8 @@
 	<haxelib name="DISCORD_RPC" if="desktop"/>
 
 	<section if="USE_VIDEOS">
-		<haxelib name="hxCodec"/>
+		<haxelib name="hxCodec" unless="ios"/>
+		<haxelib name="hxvlc" if="ios"/>
 	</section>
 	
 	<section if="PRELOAD_ALL">
