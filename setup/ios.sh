@@ -13,7 +13,7 @@ haxelib install flixel-ui 2.4.0 --quiet
 haxelib install hscript 2.4.0 --quiet
 haxelib install tjson 1.4.0 --quiet
 haxelib install hxvlc --quiet
-haxelib git hxcpp https://github.com/ShadowEngineTeam/hxcpp 1df6b911666098d1ca1ffaa54686b8c704a82a0d --quiet
+haxelib git hxcpp https://github.com/ShadowEngineTeam/hxcpp cc340ee443c9f5844c588b6068ae27e2d9be44af --quiet
 haxelib git lime https://github.com/ArkoseLabsOfficial/lime adbdbf23dd5a0ecd6c6b06a6f6704b6db9b6ef94 --quiet
 haxelib git mobile-controls https://github.com/ArkoseLabsOfficial/mobile-controls-dev --quiet
 haxelib install openfl 9.3.3
