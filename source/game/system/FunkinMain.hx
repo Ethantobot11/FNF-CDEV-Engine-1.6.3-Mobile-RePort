@@ -53,19 +53,26 @@ class FunkinMain extends Sprite
 
 	var playState:Bool = false;
 
-	public static function main():Void
-	{
-		trace(FlxG.stage.application.window.width+"x"+FlxG.stage.application.window.height);
-		initArgs();
-		Lib.current.addChild(new FunkinMain());
-	}
-
 	public static function initArgs() { //test
 		var args:Array<String> = Sys.args();
+		
+		#if ios
+		FlxG.stage.window.alert("test -1", 'ArkoseLabs wasnt her!e');
+		#end
 		
 		if (args.contains("-testmode")){
 			trace("test mode triggered");
 		}
+	}
+
+	public static function main():Void
+	{
+		trace(FlxG.stage.application.window.width+"x"+FlxG.stage.application.window.height);
+		initArgs();
+		#if ios
+		FlxG.stage.window.alert("test 1", 'InitArgs Worked :D!');
+		#end
+		Lib.current.addChild(new FunkinMain());
 	}
 
 	public function new()
@@ -84,7 +91,7 @@ class FunkinMain extends Sprite
 		CrashHandler.init();
 
 		#if ios
-		FlxG.stage.window.alert("test 1", 'Notice!');
+		FlxG.stage.window.alert("test 1", 'Ok this s hit worked!');
 		#end
 
 		#if hxvlc
@@ -107,7 +114,7 @@ class FunkinMain extends Sprite
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 
 		#if ios
-		FlxG.stage.window.alert("test 3", 'Notice!');
+		FlxG.stage.window.alert("test 3", 'Even better isnt  it .!');
 		#end
 
 		setupGame();
