@@ -14,7 +14,7 @@ haxelib install hscript 2.4.0 --quiet
 haxelib install tjson 1.4.0 --quiet
 haxelib install hxvlc --quiet
 haxelib git hxcpp https://github.com/kittycathy233/hxcpp --quiet
-haxelib git lime https://github.com/kittycathy233/lime --quiet
+haxelib git lime https://github.com/ArkoseLabsOfficial/lime adbdbf23dd5a0ecd6c6b06a6f6704b6db9b6ef94 --quiet
 haxelib git mobile-controls https://github.com/ArkoseLabsOfficial/mobile-controls-dev --quiet
 haxelib install openfl 9.3.3
 echo Finished!
