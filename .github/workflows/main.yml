@@ -15,7 +15,7 @@ jobs:
             artifactName: androidBuild-Arm64
             artifactPath: "export/release/android/bin/app/build/outputs/apk/release/*.apk"
           - name: iOS
-            os: macos-26
+            os: macos-15
             buildArgs: "ios -final -nosign"
             setupCommand: sh ./setup/ios.sh
             artifactName: iOSBuild
