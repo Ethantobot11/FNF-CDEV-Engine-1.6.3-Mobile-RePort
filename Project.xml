@@ -67,7 +67,7 @@
 	<define name="USE_VIDEOS" if="cpp"/>
 	<define name="DARK_MODE_WINDOW"/>
 	
-	<haxelib name="DISCORD_RPC" if="desktop"/>
+	<define name="DISCORD_RPC" if="windows"/>
 
 	<section if="USE_VIDEOS">
 		<haxelib name="hxCodec" unless="ios"/>
@@ -149,8 +149,8 @@
 	<haxelib name="faxe" if='switch'/>
 	<!-- <haxelib name="polymod"/> -->
 	<!--<haxelib name="linc_luajit" if="ALLOW_LUA"/>-->
-	<haxelib name="discord_rpc" if="desktop"/>
-	<haxelib name="HxWebView" if="desktop"/>
+	<haxelib name="discord_rpc" if="DISCORD_RPC"/>
+	<haxelib name="HxWebView" if="windows"/>
 	<!--<haxelib name="linc_luajit" if="windows"/>-->
 	<!--<haxelib name="hxcpp-debug-server" if="desktop"/>-->
 

@@ -23,6 +23,7 @@ class SettingsProperties
 	public static var currentClass:SettingsSubState = null;
 	public static var CURRENT_SETTINGS:Array<SettingsCategory> = [];
 	public static var holdTime:Float = 0;
+	public static var holdStep:Float = 0;
 	public static var ON_PAUSE:Bool = false;
 
 	#if android
@@ -39,23 +40,47 @@ class SettingsProperties
 		return false;
 	}
 
-	public static function checkMobileSwipe(expectedDir:String):Bool {
+	public static function checkMobileSwipe(expectedDir:String, checkHold:Bool = false):Bool {
 		#if mobile
-		for (swipe in FlxG.swipes) {
-			if (currentClass != null) {
-				var grpOptions:Dynamic = Reflect.getProperty(currentClass, "grpOptions");
-				var curSelected:Dynamic = Reflect.getProperty(currentClass, "curSelected");
-				
-				if (grpOptions != null && curSelected != null) {
-					var text:Dynamic = grpOptions.members[curSelected];
-					// Check if the swipe started precisely on the currently selected option
-					if (text != null && swipe.startPosition.y >= text.y && swipe.startPosition.y <= text.y + text.height) {
-						if (swipe.distance > 30) { // Distance threshold to avoid jitter being read as a swipe
-							var isLeft = (swipe.angle > 135 || swipe.angle < -135);
-							var isRight = (swipe.angle > -45 && swipe.angle < 45);
-							
-							if (expectedDir == "LEFT" && isLeft) return true;
-							if (expectedDir == "RIGHT" && isRight) return true;
+		if (!checkHold) {
+			// For single swipes
+			for (swipe in FlxG.swipes) {
+				if (currentClass != null) {
+					var grpOptions:Dynamic = Reflect.getProperty(currentClass, "grpOptions");
+					var curSelected:Dynamic = Reflect.getProperty(currentClass, "curSelected");
+					
+					if (grpOptions != null && curSelected != null) {
+						var text:Dynamic = grpOptions.members[curSelected];
+						if (text != null && swipe.startPosition.y >= text.y && swipe.startPosition.y <= text.y + text.height) {
+							if (swipe.distance > 30) { 
+								var isLeft = (swipe.angle > 135 || swipe.angle < -135);
+								var isRight = (swipe.angle > -45 && swipe.angle < 45);
+								
+								if (expectedDir == "LEFT" && isLeft) return true;
+								if (expectedDir == "RIGHT" && isRight) return true;
+							}
+						}
+					}
+				}
+			}
+		} else {
+			for (touch in FlxG.touches.list) {
+				if (touch.pressed) {
+					if (currentClass != null) {
+						var grpOptions:Dynamic = Reflect.getProperty(currentClass, "grpOptions");
+						var curSelected:Dynamic = Reflect.getProperty(currentClass, "curSelected");
+						
+						if (grpOptions != null && curSelected != null) {
+							var text:Dynamic = grpOptions.members[curSelected];
+							if (text != null && touch.justPressedPosition.y >= text.y && touch.justPressedPosition.y <= text.y + text.height) {
+								var diffX = touch.x - touch.justPressedPosition.x;
+								var diffY = Math.abs(touch.y - touch.justPressedPosition.y);
+
+								if (Math.abs(diffX) > 30 && diffY < Math.abs(diffX)) {
+									if (expectedDir == "LEFT" && diffX < -30) return true;
+									if (expectedDir == "RIGHT" && diffX > 30) return true;
+								}
+							}
 						}
 					}
 				}
@@ -67,24 +92,27 @@ class SettingsProperties
 
 	public static function getLeftJustPressed():Bool {
 		if (FlxG.keys.justPressed.LEFT) return true;
-		if (checkMobileSwipe("LEFT")) return true;
+		if (checkMobileSwipe("LEFT", false)) return true;
 		return false;
 	}
 
 	public static function getRightJustPressed():Bool {
 		if (FlxG.keys.justPressed.RIGHT) return true;
-		if (checkMobileSwipe("RIGHT")) return true;
+		if (checkMobileSwipe("RIGHT", false)) return true;
 		return false;
 	}
 
 	public static function getLeftPressed():Bool {
-		return FlxG.keys.pressed.LEFT; // Hold only applies to physical keyboards now
+		if (FlxG.keys.pressed.LEFT) return true;
+		if (checkMobileSwipe("LEFT", true)) return true; // Now supports mobile hold!
+		return false;
 	}
 
 	public static function getRightPressed():Bool {
-		return FlxG.keys.pressed.RIGHT; // Hold only applies to physical keyboards now
+		if (FlxG.keys.pressed.RIGHT) return true;
+		if (checkMobileSwipe("RIGHT", true)) return true; // Now supports mobile hold!
+		return false;
 	}
-	// ------------------------------------------
 
 	public static function setCurrentClass(curClass:Dynamic)
 	{
@@ -96,6 +124,7 @@ class SettingsProperties
 		currentClass = null;
 		CURRENT_SETTINGS = [];
 		holdTime = 0;
+		holdStep = 0;
 	}
 
 	public static function load_default():Void
@@ -105,13 +134,13 @@ class SettingsProperties
 		storageTypes = storageTypes.concat(externalPaths); //Get SD Card Path
 		#end
 
-		// CONTROLS//
+		/* CONTROLS */
 		create_category("Controls", [],function()
 		{
 			//currentClass.openSubState(new keybinds.RebindControls(false));
 		});
 
-		// GAMEPLAY//
+		/* GAMEPLAY */
 		create_category("Gameplay", [
 			new BaseSettings("Scroll Direction", ["Up", "Down"], "Set the notes Scroll Direction.", SettingsType.BOOL, function(elapsed:Float, bs:BaseSettings){}, function(){}, "downscroll", false),
 			new BaseSettings("Middlescroll", ["Disabled", "Enabled"], "Whether to position your Note Strums in center of your screen.", SettingsType.BOOL, function(elapsed:Float, bs:BaseSettings){}, function(){}, "middlescroll", false),
@@ -370,36 +399,52 @@ class SettingsProperties
 	}
 
 	public static function create_number(type:String = "int", variable:String, postfix:String, changeValue:Dynamic, minNum:Dynamic, maxNum:Dynamic, elapsed:Float, bs:BaseSettings) {
-		var lJust = getLeftJustPressed();
-		var rJust = getRightJustPressed();
-		var lPress = getLeftPressed();
-		var rPress = getRightPressed();
+        var lJust = getLeftJustPressed();
+        var rJust = getRightJustPressed();
+        var lPress = getLeftPressed();
+        var rPress = getRightPressed();
 
-		var daValueToAdd:Dynamic = (rJust || rPress) ? changeValue : (lJust || lPress) ? -changeValue : 0;
+        var daValueToAdd:Dynamic = (rJust || rPress) ? changeValue : (lJust || lPress) ? -changeValue : 0;
 
-		if (lPress || rPress)
-			holdTime += elapsed;
-		else
-			holdTime = 0;
-		
-		if (lJust || rJust || (holdTime <= 0 && (lPress || rPress)))
-			FlxG.sound.play(Paths.sound('scrollMenu'));
-	
-		if (holdTime > 0.5 || lJust || rJust)
-		{
-			CDevConfig.setData(variable, CDevConfig.getData(variable)+daValueToAdd);
-		
-			if (CDevConfig.getData(variable) <= minNum)
-				CDevConfig.setData(variable, minNum);
+        var shouldChange:Bool = false;
 
-			if (CDevConfig.getData(variable) >= maxNum)
-				CDevConfig.setData(variable, maxNum);
-		}
-		if (type.toUpperCase() == 'PERCENT')
-			bs.value_name[0] = "%" + CDevConfig.getData(variable) * 100 + postfix;
-		else
-			bs.value_name[0] = CDevConfig.getData(variable) + postfix;
-	}
+        if (lJust || rJust) {
+            shouldChange = true;
+            FlxG.sound.play(Paths.sound('scrollMenu'));
+        }
+
+        if (lPress || rPress) {
+            holdTime += elapsed;
+
+            if (holdTime > 0.5) {
+                holdStep += elapsed;
+
+                if (holdStep >= 0.05) { 
+                    shouldChange = true;
+                    holdStep = 0;
+                }
+            }
+        } else {
+            holdTime = 0;
+            holdStep = 0;
+        }
+        
+        if (shouldChange)
+        {
+            CDevConfig.setData(variable, CDevConfig.getData(variable) + daValueToAdd);
+        
+            if (CDevConfig.getData(variable) <= minNum)
+                CDevConfig.setData(variable, minNum);
+
+            if (CDevConfig.getData(variable) >= maxNum)
+                CDevConfig.setData(variable, maxNum);
+        }
+
+        if (type.toUpperCase() == 'PERCENT')
+            bs.value_name[0] = Math.round(CDevConfig.getData(variable) * 100) + "%" + postfix;
+        else
+            bs.value_name[0] = CDevConfig.getData(variable) + postfix;
+    }
 
 	public static function create_category(name:String, child:Array<BaseSettings>, ?onPress:Dynamic):Void
 	{

@@ -73,6 +73,11 @@ class OffsetTest extends MusicBeatState
 		infoTxt.antialiasing = CDevConfig.saveData.antialiasing;
 		FlxTween.tween(infoTxt, {alpha: 1}, 2, {ease: FlxEase.linear});
 		super.create();
+
+		#if mobile
+		mobileManager.addBackButton(FlxG.width - 230, FlxG.height - 200, FlxColor.WHITE, () -> {endShit();});
+		mobileManager.addBackButtonCamera();
+		#end
 	}
 
 	override function update(elapsed:Float)

@@ -103,7 +103,7 @@ class OptionsSubState extends MusicBeatSubstate
 		#if mobile
 		for (item in 0...SettingsProperties.CURRENT_SETTINGS.length)
 		{
-			if (FlxG.mouse.overlaps(grpOptions.members[item], camera))
+			if (grpOptions.members[item] != null && FlxG.mouse.overlaps(grpOptions.members[item], camera))
 			{
 				if (FlxG.mouse.justPressed)
 				{

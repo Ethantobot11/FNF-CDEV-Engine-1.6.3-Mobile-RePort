@@ -184,37 +184,50 @@ class SettingsSubState extends MusicBeatSubstate
 					updateText(theText.ID);
 				}
 			case 1: // int
-				var daValueToAdd:Int = SettingsProperties.getRightPressed() ? 1 : -1;
-				if (SettingsProperties.getLeftPressed() || SettingsProperties.getRightPressed())
-					holdTime += elapsed;
-				else 
-					holdTime = 0;
+                var lJust = SettingsProperties.getLeftJustPressed();
+                var rJust = SettingsProperties.getRightJustPressed();
+                var lPress = SettingsProperties.getLeftPressed();
+                var rPress = SettingsProperties.getRightPressed();
 
-				if (holdTime <= 0 && (SettingsProperties.getLeftPressed() || SettingsProperties.getRightPressed()))
-					FlxG.sound.play(Paths.sound('scrollMenu'));
+                var daValueToAdd:Int = (rPress || rJust) ? 1 : ((lPress || lJust) ? -1 : 0);
+                
+                if (lPress || rPress)
+                    holdTime += elapsed;
+                else 
+                    holdTime = 0;
 
-				if (holdTime > 0.5 || SettingsProperties.getLeftJustPressed() || SettingsProperties.getRightJustPressed())
-				{
-					CDevConfig.setData(curSet.savedata_field, CDevConfig.getData(curSet.savedata_field) + daValueToAdd);
-					updateText(theText.ID);
-				}
-				curSet.value_name[0] = CDevConfig.getData(curSet.savedata_field);
-			case 2: // float
-				var daValueToAdd:Float = SettingsProperties.getRightPressed() ? 0.1 : -0.1;
-				if (SettingsProperties.getLeftPressed() || SettingsProperties.getRightPressed())
-					holdTime += elapsed;
-				else 
-					holdTime = 0;
+                if (holdTime <= 0 && (lPress || rPress))
+                    FlxG.sound.play(Paths.sound('scrollMenu'));
 
-				if (holdTime <= 0 && (SettingsProperties.getLeftPressed() || SettingsProperties.getRightPressed()))
-					FlxG.sound.play(Paths.sound('scrollMenu'));
+                if (holdTime > 0.5 || lJust || rJust)
+                {
+                    CDevConfig.setData(curSet.savedata_field, CDevConfig.getData(curSet.savedata_field) + daValueToAdd);
+                    updateText(theText.ID);
+                }
+                curSet.value_name[0] = Std.string(CDevConfig.getData(curSet.savedata_field));
+                
+            case 2: // float
+                var lJust = SettingsProperties.getLeftJustPressed();
+                var rJust = SettingsProperties.getRightJustPressed();
+                var lPress = SettingsProperties.getLeftPressed();
+                var rPress = SettingsProperties.getRightPressed();
 
-				if (holdTime > 0.5 || SettingsProperties.getLeftJustPressed() || SettingsProperties.getRightJustPressed())
-				{
-					CDevConfig.setData(curSet.savedata_field, CDevConfig.getData(curSet.savedata_field) + daValueToAdd);
-					updateText(theText.ID);
-				}
-				curSet.value_name[0] = CDevConfig.getData(curSet.savedata_field);
+                var daValueToAdd:Float = (rPress || rJust) ? 0.1 : ((lPress || lJust) ? -0.1 : 0);
+                
+                if (lPress || rPress)
+                    holdTime += elapsed;
+                else 
+                    holdTime = 0;
+
+                if (holdTime <= 0 && (lPress || rPress))
+                    FlxG.sound.play(Paths.sound('scrollMenu'));
+
+                if (holdTime > 0.5 || lJust || rJust)
+                {
+                    CDevConfig.setData(curSet.savedata_field, CDevConfig.getData(curSet.savedata_field) + daValueToAdd);
+                    updateText(theText.ID);
+                }
+                curSet.value_name[0] = Std.string(CDevConfig.getData(curSet.savedata_field));
 			case 3: // function
 				// currently unknown
 				updateText(theText.ID);

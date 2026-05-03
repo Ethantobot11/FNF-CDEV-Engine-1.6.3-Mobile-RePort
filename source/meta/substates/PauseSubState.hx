@@ -131,14 +131,18 @@ class PauseSubState extends MusicBeatSubstate
 			changeSelection(1);
 
 		#if mobile
-		for (item in 0...menuItems.length)
+		var cam = (cameras != null && cameras.length > 0) ? cameras[cameras.length - 1] : FlxG.camera;
+
+		var mousePos = FlxG.mouse.getScreenPosition(cam);
+
+		for (item in grpMenuShit.members)
 		{
-			if (FlxG.mouse.overlaps(grpMenuShit.members[item], camera))
+			if (item != null && item.overlapsPoint(mousePos, true, cam))
 			{
 				if (FlxG.mouse.justPressed)
 				{
-					if (curSelected != grpMenuShit.members[item].ID)
-						changeSelection(grpMenuShit.members[item].ID, true);
+					if (curSelected != item.ID)
+						changeSelection(item.ID, true);
 					else
 						acceptedWithMouse = true;
 				}

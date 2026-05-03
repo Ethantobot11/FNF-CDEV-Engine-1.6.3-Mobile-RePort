@@ -97,19 +97,5 @@ class DiscordClient
 
 		// trace('Discord RPC Updated. Arguments: $details, $state, $smallImageKey, $hasStartTimestamp, $endTimestamp');
 	}
-	//balls
-	public function new(){}
-
-	public static function shutdown(){}
-
-	static function onReady(){}
-
-	static function onError(_code:Int, _message:String){}
-
-	static function onDisconnected(_code:Int, _message:String){}
-
-	public static function initialize(){}
-
-	public static function changePresence(details:String, state:Null<String>, ?smallImageKey:String, ?hasStartTimestamp:Bool, ?endTimestamp:Float){}
 }
 #end

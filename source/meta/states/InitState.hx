@@ -7,6 +7,7 @@ import flixel.util.FlxColor;
 #if DISCORD_RPC
 import game.cdev.engineutils.Discord.DiscordClient;
 #end
+import lime.app.Application;
 import flixel.addons.transition.TransitionData;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.addons.transition.TransitionData.TransitionTileData;
