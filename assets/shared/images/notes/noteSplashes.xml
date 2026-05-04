@@ -1,25 +1,27 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
+<!-- OPTIMIZADO BY THE IDK WHO -->
+
 <TextureAtlas imagePath="noteSplashes.png">
-	<!-- Created with Adobe Animate version 21.0.6.41649 -->
-	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="bluesplash0000" x="10" y="10" width="160" height="177" frameX="-50" frameY="-38" frameWidth="265" frameHeight="262"/>
-	<SubTexture name="bluesplash0001" x="180" y="10" width="251" height="241" frameX="-2" frameY="-12" frameWidth="265" frameHeight="262"/>
-	<SubTexture name="bluesplash0002" x="441" y="10" width="260" height="259" frameX="0" frameY="-1" frameWidth="265" frameHeight="262"/>
-	<SubTexture name="bluesplash0003" x="711" y="10" width="264" height="262" frameX="-1" frameY="0" frameWidth="265" frameHeight="262"/>
-	<SubTexture name="bluesplash0004" x="711" y="10" width="264" height="262" frameX="-1" frameY="0" frameWidth="265" frameHeight="262"/>
-	<SubTexture name="greensplash0000" x="985" y="10" width="160" height="177" frameX="-50" frameY="-38" frameWidth="265" frameHeight="262"/>
-	<SubTexture name="greensplash0001" x="1155" y="10" width="251" height="241" frameX="-2" frameY="-12" frameWidth="265" frameHeight="262"/>
-	<SubTexture name="greensplash0002" x="1416" y="10" width="260" height="259" frameX="0" frameY="-1" frameWidth="265" frameHeight="262"/>
-	<SubTexture name="greensplash0003" x="1686" y="10" width="264" height="262" frameX="-1" frameY="0" frameWidth="265" frameHeight="262"/>
-	<SubTexture name="greensplash0004" x="1686" y="10" width="264" height="262" frameX="-1" frameY="0" frameWidth="265" frameHeight="262"/>
-	<SubTexture name="purplesplash0000" x="10" y="282" width="160" height="177" frameX="-50" frameY="-38" frameWidth="265" frameHeight="262"/>
-	<SubTexture name="purplesplash0001" x="180" y="282" width="251" height="241" frameX="-2" frameY="-12" frameWidth="265" frameHeight="262"/>
-	<SubTexture name="purplesplash0002" x="441" y="282" width="260" height="259" frameX="0" frameY="-1" frameWidth="265" frameHeight="262"/>
-	<SubTexture name="purplesplash0003" x="711" y="282" width="264" height="262" frameX="-1" frameY="0" frameWidth="265" frameHeight="262"/>
-	<SubTexture name="purplesplash0004" x="711" y="282" width="264" height="262" frameX="-1" frameY="0" frameWidth="265" frameHeight="262"/>
-	<SubTexture name="redsplash0000" x="985" y="282" width="160" height="177" frameX="-50" frameY="-38" frameWidth="265" frameHeight="262"/>
-	<SubTexture name="redsplash0001" x="1155" y="282" width="251" height="241" frameX="-2" frameY="-12" frameWidth="265" frameHeight="262"/>
-	<SubTexture name="redsplash0002" x="1416" y="282" width="260" height="259" frameX="0" frameY="-1" frameWidth="265" frameHeight="262"/>
-	<SubTexture name="redsplash0003" x="1686" y="282" width="264" height="262" frameX="-1" frameY="0" frameWidth="265" frameHeight="262"/>
-	<SubTexture name="redsplash0004" x="1686" y="282" width="264" height="262" frameX="-1" frameY="0" frameWidth="265" frameHeight="262"/>
+	
+	
+	<SubTexture name="bluesplash0000" x="5" y="5" width="80" height="88" frameX="-25" frameY="-19" frameWidth="132" frameHeight="131" />
+	<SubTexture name="bluesplash0001" x="90" y="5" width="125" height="120" frameX="-1" frameY="-6" frameWidth="132" frameHeight="131" />
+	<SubTexture name="bluesplash0002" x="220" y="5" width="130" height="129" frameX="0" frameY="-1" frameWidth="132" frameHeight="131" />
+	<SubTexture name="bluesplash0003" x="355" y="5" width="132" height="131" frameX="-1" frameY="0" frameWidth="132" frameHeight="131" />
+	<SubTexture name="bluesplash0004" x="355" y="5" width="132" height="131" frameX="-1" frameY="0" frameWidth="132" frameHeight="131" />
+	<SubTexture name="greensplash0000" x="492" y="5" width="80" height="88" frameX="-25" frameY="-19" frameWidth="132" frameHeight="131" />
+	<SubTexture name="greensplash0001" x="577" y="5" width="125" height="120" frameX="-1" frameY="-6" frameWidth="132" frameHeight="131" />
+	<SubTexture name="greensplash0002" x="708" y="5" width="130" height="129" frameX="0" frameY="-1" frameWidth="132" frameHeight="131" />
+	<SubTexture name="greensplash0003" x="843" y="5" width="132" height="131" frameX="-1" frameY="0" frameWidth="132" frameHeight="131" />
+	<SubTexture name="greensplash0004" x="843" y="5" width="132" height="131" frameX="-1" frameY="0" frameWidth="132" frameHeight="131" />
+	<SubTexture name="purplesplash0000" x="5" y="141" width="80" height="88" frameX="-25" frameY="-19" frameWidth="132" frameHeight="131" />
+	<SubTexture name="purplesplash0001" x="90" y="141" width="125" height="120" frameX="-1" frameY="-6" frameWidth="132" frameHeight="131" />
+	<SubTexture name="purplesplash0002" x="220" y="141" width="130" height="129" frameX="0" frameY="-1" frameWidth="132" frameHeight="131" />
+	<SubTexture name="purplesplash0003" x="355" y="141" width="132" height="131" frameX="-1" frameY="0" frameWidth="132" frameHeight="131" />
+	<SubTexture name="purplesplash0004" x="355" y="141" width="132" height="131" frameX="-1" frameY="0" frameWidth="132" frameHeight="131" />
+	<SubTexture name="redsplash0000" x="492" y="141" width="80" height="88" frameX="-25" frameY="-19" frameWidth="132" frameHeight="131" />
+	<SubTexture name="redsplash0001" x="577" y="141" width="125" height="120" frameX="-1" frameY="-6" frameWidth="132" frameHeight="131" />
+	<SubTexture name="redsplash0002" x="708" y="141" width="130" height="129" frameX="0" frameY="-1" frameWidth="132" frameHeight="131" />
+	<SubTexture name="redsplash0003" x="843" y="141" width="132" height="131" frameX="-1" frameY="0" frameWidth="132" frameHeight="131" />
+	<SubTexture name="redsplash0004" x="843" y="141" width="132" height="131" frameX="-1" frameY="0" frameWidth="132" frameHeight="131" />
 </TextureAtlas>
